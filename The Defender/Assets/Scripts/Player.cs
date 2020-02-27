@@ -12,7 +12,14 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileFiringPeriod = 0.1f;
-  
+    [Header("Audio")]
+    [SerializeField] AudioClip playerShootSFX;
+    [SerializeField] AudioClip playerDeathSFX;
+    [SerializeField] [Range(0,1)] float playerShootVolume = 0.7f;
+    [SerializeField] [Range(0,1)] float playerDeathVolume = 0.7f; 
+
+
+
 
     Coroutine firingCoroutine;
 
@@ -62,6 +69,8 @@ public class Player : MonoBehaviour
                   Quaternion.identity) as GameObject;
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
             yield return new WaitForSeconds(projectileFiringPeriod);
+            AudioSource.PlayClipAtPoint(playerShootSFX, Camera.main.transform.position, playerShootVolume);
+
         }
     }
 
@@ -82,24 +91,25 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
         ProcessHit(damageDealer);
     }
 
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
+        damageDealer.Hit();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
-
-
-
-
-
-
+    private void Die()
+    {
+        Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(playerDeathSFX, Camera.main.transform.position, playerDeathVolume);
+    }
 
     private void SetUpMoveBoundaries()
     {
