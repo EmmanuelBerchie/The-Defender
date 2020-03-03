@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -5663507967012490650}
   - component: {fileID: 6650140636853676056}
   - component: {fileID: -3696536431261877067}
+  - component: {fileID: -1119631769223010504}
+  - component: {fileID: 82861094067633689}
   m_Layer: 9
   m_Name: Enemy (1)
   m_TagString: Untagged
@@ -120,6 +122,8 @@ MonoBehaviour:
   durationOfExplosion: 1
   enemyDeathSFX: {fileID: 8300000, guid: d4937331eedae614bbfe7f914e4536b6, type: 3}
   enemyShootSFX: {fileID: 8300000, guid: e83e18fd936277442b669ba40ed89b71, type: 3}
+  enemyShootVolume: 0.7
+  enemyDeathVolume: 0.7
 --- !u!58 &6650140636853676056
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -232,3 +236,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &-1119631769223010504
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555501551831094975}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &82861094067633689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555501551831094975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b122886aeb1342478a63662abbc64f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100

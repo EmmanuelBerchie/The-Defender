@@ -16,8 +16,9 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip playerShootSFX;
     [SerializeField] AudioClip playerDeathSFX;
     [SerializeField] [Range(0,1)] float playerShootVolume = 0.7f;
-    [SerializeField] [Range(0,1)] float playerDeathVolume = 0.7f; 
+    [SerializeField] [Range(0,1)] float playerDeathVolume = 0.7f;
 
+    HealthDisplay healthDisplay;
 
 
 
@@ -97,7 +98,7 @@ public class Player : MonoBehaviour
 
     private void ProcessHit(DamageDealer damageDealer)
     {
-        health -= damageDealer.GetDamage();
+        health -= damageDealer.GetDamage(); 
         damageDealer.Hit();
         if (health <= 0)
         {
@@ -105,12 +106,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
+        FindObjectOfType<Level>().LoadGameOver();
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(playerDeathSFX, Camera.main.transform.position, playerDeathVolume);
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
     private void SetUpMoveBoundaries()
     {
         Camera gameCamera = Camera.main;

@@ -5,11 +5,13 @@ public class Enemy : MonoBehaviour
     [Header("Enemy")]  
     [SerializeField] float health = 100f;
     [SerializeField] float shotCounter;
+    [SerializeField] int scoreValue = 150; 
     [Header("Projectile")]
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] GameObject laserPrefab;
+    [SerializeField] int points = 100;
     [Header("Explosion")]
     [SerializeField] GameObject deathVFX;
     [SerializeField] float durationOfExplosion;
@@ -20,7 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Range(0,1)] float enemyDeathVolume = 0.7f;
 
 
-
+    GameSession gameSession;
 
 
     // Start is called before the first frame update 
@@ -79,13 +81,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
+        FindObjectOfType<GameSession>().AddToScore(scoreValue);
         Destroy(gameObject);
         GameObject explosion = Instantiate(
                deathVFX,
                transform.position, transform.rotation);
                Destroy(explosion, durationOfExplosion);
         AudioSource.PlayClipAtPoint(enemyDeathSFX, Camera.main.transform.position, enemyDeathVolume);
+        
     }
+
+    
 }
