@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - Player Projectile
   - Enemy Projectile
-  - 
+  - Laser Shredder
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Projectiles
+    uniqueID: 1971392585
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

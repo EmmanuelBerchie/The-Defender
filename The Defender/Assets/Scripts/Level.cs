@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
+    GameSession gameSession;
     [SerializeField] float delay = 4f;
 
     public void LoadStartMenu()

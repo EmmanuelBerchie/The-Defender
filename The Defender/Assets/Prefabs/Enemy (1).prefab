@@ -110,13 +110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9991a66a607eebe4dbac0a0969db5462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
+  health: 300
   shotCounter: 0
+  scoreValue: 150
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
   projectileSpeed: 10
   laserPrefab: {fileID: 9052092236118354166, guid: fa2d0dd2449948748b97eab204219a1e,
     type: 3}
+  points: 100
   deathVFX: {fileID: 4538970389488446241, guid: 3ad2e4331c8263b4c8300b622c9ae276,
     type: 3}
   durationOfExplosion: 1
